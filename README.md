@@ -43,6 +43,8 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+  It's whenever there is a function nested in another function.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -64,8 +66,13 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+  On line 52 because there is a new function nested in personalDice().
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
-c. What is the lexical scope of `newRoll`? 
+  The name Dan will be the same but the number rolled will change whenever the function is invoked.
+
+c. What is the lexical scope of `newRoll`?
+  The lexical scope of newRoll is in any funtion that is nested within function() after line 55.
 
 
 ### Task 3 - Stretch Goals
