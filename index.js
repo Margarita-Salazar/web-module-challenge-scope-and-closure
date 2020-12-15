@@ -62,8 +62,9 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random()*3);
+  
 }
 
 
@@ -81,8 +82,21 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningFunction, number){
+  let homeScore = 0;
+  let awayScore = 0;
+  for(let i = 0; i < number; i++){
+    let score = inningFunction();
+    if(i%2===0){
+      homeScore+=score;
+    }
+    else{
+      awayScore+=score;
+    }
+    // update scores
+  }
+  return {Home: homeScore, Away: awayScore}
+
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -90,8 +104,10 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningFunction) {
+  let homeScore = inningFunction();
+  let awayScore = inningFunction();
+  return {Home: homeScore, Away: awayScore}
 }
 
 
@@ -136,9 +152,28 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(functionOne, functionTwo, number){
+  const totalScore = [];
+  let home = 0;
+  let away = 0;
+  let inningNum = 0;
+  for(let i = 0; i<number; i++){
+    let inningScore = functionOne(functionTwo);
+    home = home + inningScore.Home;
+    away = away + inningScore.Away;
+    inningNum++;
+    totalScore.push(`Inning ${inningNum}: Away ${away} - Home ${home}`);
+  }
+  if(home === away){
+    totalScore.push(`This game will require extra innings: Away ${away} - Home ${home}`)
+  }else{
+    totalScore.push(`Final Score: Away ${away} - Home ${home}`)
+  }
+  console.log(totalScore);
+  return totalScore;
+  
 }
+console.log(scoreboard(getInningScore,inning,9))
 
 
 
